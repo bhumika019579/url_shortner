@@ -6,7 +6,7 @@ const route = express.Router();
 
 route.get('/', async (req, res) => {
     const sessionId=req.cookies.uid;
-    const user=getuser(sessionId);
+    const user= await getuser(sessionId);
       if(!user) return res.redirect('/Login')
     const allUrls = await prisma.url.findMany({
         where:{userId:user.id},
