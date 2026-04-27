@@ -29,12 +29,12 @@ async function handleuserLogin(req,res){
             email
         }
     });
-    if(!user) return res.render('login',{
+    if(!user) return res.render('Login',{
         error:"User Not Found"
     });
     const isMatch= await bcrypt.compare(password,user.password);
     if (!isMatch) {
-        return res.render('login', {
+        return res.render('Login', {
             error: "Invalid Password"
         });
     }
