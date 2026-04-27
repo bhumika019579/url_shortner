@@ -14,9 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(cookieParser());
 app.use(methodOverride('_method'));
-app.get("/", (req, res) => {
-    res.send("Server is running 🚀");
-});
+
 app.use("/user",userRoute);
 app.use("/",staticRouter);
 
