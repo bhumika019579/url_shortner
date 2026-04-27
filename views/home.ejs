@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{
+             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-Page</title>
+</head>
+<body>
+   <h1>URL SHORTNER</h1>
+   <% if(locals.id){%>
+    <p> URL Generated:http://localhost/<%=id %></p>
+    <%
+   }%>
+   <div>
+    <form method="post" action="/">
+        <label for="">Enter Your Original URL </label>
+        <input 
+        type="text"
+         name="Url"
+          placeholder="http://example.com"/>
+          <button type="submit">Generate</button>
+    </form>
+   </div>
+    <table>
+    <tr>
+        <th>Short ID</th>
+        <th>Original URL</th>
+        <th>Total Clicks</th>
+    </tr>
+    <% if(locals.urls){ urls.forEach(url=>{ %>
+    <tr>
+        <td><%=url.shortid%></td>
+        <td><%=url.redirecturl%></td>
+        <td><%=url._count.visithistory%></td>
+         <td>
+        <form method="post" action="/<%=url.shortid%>?_method=DELETE">
+            <button type="submit">Delete</button>
+        </form>
+    </td>
+    </tr>
+    <% }) } %>
+   </table>
+<a href="/logout" style="
+    display: inline-block;
+    margin-top: 20px;
+    background: #6c63ff;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+">Logout</a>
+</body>
+</html>
