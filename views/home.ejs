@@ -1,62 +1,275 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        body{
-             body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid black; padding: 8px; text-align: left; }
-        th { background-color: #f2f2f2; }
-        }
-    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home-Page</title>
+    <title>URL Shortener</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top left, rgba(124, 58, 237, 0.25), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.2), transparent 30%),
+                #050816;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ffffff, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            color: #a1a1aa;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .form-section {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .form-section input {
+            flex: 1;
+            min-width: 250px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s ease;
+        }
+
+        .form-section input:focus {
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+        }
+
+        .form-section button {
+            background: linear-gradient(135deg, #7c3aed, #4f46e5);
+            border: none;
+            color: white;
+            padding: 15px 28px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .form-section button:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        .generated-link {
+            margin-top: 25px;
+            padding: 16px;
+            border-radius: 14px;
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(124, 58, 237, 0.35);
+            color: #d8b4fe;
+            word-break: break-all;
+        }
+
+        .table-wrapper {
+            margin-top: 40px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        th {
+            background: rgba(255,255,255,0.08);
+            color: #d4d4d8;
+            font-weight: 600;
+            padding: 18px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 18px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: #e4e4e7;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .url-text {
+            max-width: 350px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .delete-btn {
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background: rgba(239, 68, 68, 0.25);
+        }
+
+        .logout {
+            display: inline-block;
+            margin-top: 30px;
+            background: linear-gradient(135deg, #6d28d9, #4338ca);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .logout:hover {
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+
+            .form-section {
+                flex-direction: column;
+            }
+
+            .form-section button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-   <h1>URL SHORTNER</h1>
-   <% if(locals.id){%>
-    <p> URL Generated:http://localhost/<%=id %></p>
-    <%
-   }%>
-   <div>
-    <form method="post" action="/">
-        <label for="">Enter Your Original URL </label>
-        <input 
-        type="text"
-         name="Url"
-          placeholder="http://example.com"/>
-          <button type="submit">Generate</button>
-    </form>
-   </div>
-    <table>
-    <tr>
-        <th>Short ID</th>
-        <th>Original URL</th>
-        <th>Total Clicks</th>
-    </tr>
-    <% if(locals.urls){ urls.forEach(url=>{ %>
-    <tr>
-        <td><%=url.shortid%></td>
-        <td><%=url.redirecturl%></td>
-        <td><%=url._count.visithistory%></td>
-         <td>
-        <form method="post" action="/<%=url.shortid%>?_method=DELETE">
-            <button type="submit">Delete</button>
+
+<div class="container">
+
+    <div class="hero">
+        <h1>URL SHORTENER</h1>
+        <p>Generate clean short links instantly and track every click.</p>
+    </div>
+
+    <div class="card">
+
+        <form method="post" action="/">
+            <label style="display:block; margin-bottom:12px; color:#cbd5e1; font-size:14px;">
+                Enter Your Original URL
+            </label>
+
+            <div class="form-section">
+                <input
+                    type="text"
+                    name="Url"
+                    placeholder="https://example.com"
+                />
+
+                <button type="submit">Generate Link</button>
+            </div>
         </form>
-    </td>
-    </tr>
-    <% }) } %>
-   </table>
-<a href="/logout" style="
-    display: inline-block;
-    margin-top: 20px;
-    background: #6c63ff;
-    color: white;
-    padding: 8px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 14px;
-">Logout</a>
+
+        <% if(locals.id){ %>
+            <div class="generated-link">
+                Short URL Generated:
+                <strong>http://localhost/<%= id %></strong>
+            </div>
+        <% } %>
+
+        <div class="table-wrapper">
+            <table>
+                <tr>
+                    <th>Short ID</th>
+                    <th>Original URL</th>
+                    <th>Total Clicks</th>
+                    <th>Action</th>
+                </tr>
+
+                <% if(locals.urls){ urls.forEach(url => { %>
+                <tr>
+                    <td><%= url.shortid %></td>
+
+                    <td class="url-text">
+                        <%= url.redirecturl %>
+                    </td>
+
+                    <td><%= url._count.visithistory %></td>
+
+                    <td>
+                        <form method="post" action="/<%= url.shortid %>?_method=DELETE">
+                            <button class="delete-btn" type="submit">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) } %>
+            </table>
+        </div>
+
+        <a href="/logout" class="logout">
+            Logout
+        </a>
+
+    </div>
+</div>
+
 </body>
 </html>
+```
