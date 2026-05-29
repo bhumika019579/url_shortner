@@ -4,7 +4,7 @@ A full-stack URL Shortener web application that allows authenticated users to ge
 
 ## 🚀 Live Demo
 
-🌐 Live Site: https://urlshortner-production-8cb0.up.railway.app
+🌐 Live Site: https://urlshortner-production-9c47.up.railway.app/
 
 ## 📂 GitHub Repository
 
